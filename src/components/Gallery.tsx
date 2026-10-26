@@ -2,20 +2,21 @@ import { SEASON_ICON, SEASON_NAMES } from "@/lib/season";
 import { UNSPLASH_URL, unsplashLink } from "@/lib/unsplash";
 import type { Destination } from "@/types/destination";
 import { Photo } from "./Photo";
+import { Reveal } from "./Reveal";
 
 /** One photograph per season, with linked credits. */
 export function Gallery({ destinations }: { destinations: Destination[] }) {
   return (
     <section className="pg-sec" id="gallery" aria-labelledby="gal-h">
       <div className="et-container">
-        <div className="pg-head">
+        <Reveal className="pg-head">
           <div className="pg-head__copy">
             <h2 className="et-heading-lg" id="gal-h">
               Places to remember
             </h2>
           </div>
-        </div>
-        <div className="pg-seasons">
+        </Reveal>
+        <Reveal className="pg-seasons" parallax>
           {destinations.map((d) => (
             <figure key={d.id} className="et-figure" data-season={d.bestSeason}>
               <Photo
@@ -38,7 +39,7 @@ export function Gallery({ destinations }: { destinations: Destination[] }) {
               </figcaption>
             </figure>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

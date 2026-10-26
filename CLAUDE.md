@@ -59,3 +59,7 @@ This is Next.js 16 with React 19 and **Cache Components enabled** (`cacheCompone
 ## Auth
 
 Email and password through Supabase Auth. `src/proxy.ts` refreshes the session on each request (and sends signed-in users away from `/login` and `/signup`). `src/app/auth/actions.ts` holds the `signUp`, `logIn` and `logOut` server actions, used by `AuthForm` on `/login` and `/signup`. `src/app/auth/confirm/route.ts` finishes the email confirmation link. `getCurrentUser()` in `src/lib/auth.ts` verifies the JWT with `getClaims()`; it reads cookies, so call it only behind `<Suspense>` (the nav's `AccountLinks` does). In Supabase, add `<site url>/auth/confirm` to Auth > URL configuration > Redirect URLs, for localhost and for the Vercel domain.
+
+## Motion (GSAP)
+
+Animations use GSAP with `@gsap/react`. `src/lib/motion.ts` registers the plugins and exports `useMotion`, which runs a setup function only when `prefers-reduced-motion: no-preference` and reverts it on unmount. `Reveal` (scroll-in for a wrapper's direct children, with `sides` and `parallax` options), `HeroMotion` (split-text headline, copy and photo intro) and `SiteMotion` (nav and ribbon intro, `ScrollTrigger.refresh()` on navigation) are the building blocks; `DestinationBrowser` staggers cards on season change. Rules: tweens on `.et-card` must set `transition: none` and clear props afterwards, because the stylesheet transitions card transforms. The hero and nav start hidden in `site.css` (with a failsafe animation) so they do not flash before GSAP runs; scroll reveals do not.

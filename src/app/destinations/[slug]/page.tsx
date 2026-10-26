@@ -3,7 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { DestinationCard } from "@/components/DestinationCard";
+import { HeroMotion } from "@/components/HeroMotion";
 import { Photo } from "@/components/Photo";
+import { Reveal } from "@/components/Reveal";
 import { REGION_NAMES } from "@/lib/content";
 import { getDestinationBySlug, getDestinations } from "@/lib/destinations";
 import { MONTH_NAMES, SEASON_ICON, SEASON_NAMES } from "@/lib/season";
@@ -79,7 +81,7 @@ async function DestinationDetail({ slug }: { slug: string }) {
           <Link className="et-btn et-btn--quiet pg-back" href="/#destinations">
             <span className="et-i et-i--arrow" aria-hidden="true" /> All destinations
           </Link>
-          <div className="pg-detail">
+          <HeroMotion className="pg-detail">
             <div className="pg-detail__copy">
               <p className="et-eyebrow">
                 {REGION_NAMES[d.region]} · {d.country}
@@ -112,12 +114,12 @@ async function DestinationDetail({ slug }: { slug: string }) {
                 </span>
               </figcaption>
             </figure>
-          </div>
+          </HeroMotion>
         </div>
       </section>
 
       <section className="pg-sec" id="best-time" aria-labelledby="best-h">
-        <div className="et-container">
+        <Reveal className="et-container">
           <div className="pg-head">
             <div className="pg-head__copy">
               <p className="et-eyebrow" style={{ color: "var(--season-text)" }}>
@@ -134,24 +136,24 @@ async function DestinationDetail({ slug }: { slug: string }) {
             </p>
             <p>{d.description}</p>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {more.length > 0 && (
         <section className="pg-sec pg-sec--quiet" aria-labelledby="more-h">
           <div className="et-container">
-            <div className="pg-head">
+            <Reveal className="pg-head">
               <div className="pg-head__copy">
                 <h2 className="et-heading-lg" id="more-h">
                   More places to see
                 </h2>
               </div>
-            </div>
-            <div className="pg-grid3">
+            </Reveal>
+            <Reveal className="pg-grid3">
               {more.map((x) => (
                 <DestinationCard key={x.id} destination={x} />
               ))}
-            </div>
+            </Reveal>
           </div>
         </section>
       )}
