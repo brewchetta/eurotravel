@@ -18,6 +18,8 @@
 .pg-foot { background: var(--surface-2); padding-block: var(--space-7); border-top: 1px solid var(--line); }
 .pg-foot__row { display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-7); justify-content: space-between; align-items: start; }
 .pg-foot__links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
+/* Masked icons form their own stacking context and paint above the card's stretched title link, so let clicks fall through to it. */
+.et-card .et-i { pointer-events: none; }
 .pg-empty { padding: var(--space-6); border: 1px dashed var(--line-strong); border-radius: var(--radius-lg); color: var(--ink-muted); }
 
 /* Destination detail */
