@@ -1,0 +1,36 @@
+/* Page-level layout built on top of the Euro Travel design system (from the front-page prototype). */
+.pg-skip { position: absolute; left: -9999px; top: 8px; z-index: 50; padding: 12px 16px; background: var(--surface-1); color: var(--ink); border: 2px solid var(--focus); border-radius: 12px; }
+.pg-skip:focus { left: 16px; }
+.pg-nolink { text-decoration: none; }
+.pg-sec { padding-block: var(--space-8); }
+.pg-sec--quiet { background: var(--surface-2); }
+.pg-hero { background: var(--region-wash); padding-block: var(--space-8); }
+.pg-hero__grid { display: grid; gap: var(--space-6); align-items: center; }
+.pg-hero__copy { display: grid; gap: var(--space-4); justify-items: start; }
+.pg-hero__photo { width: 100%; max-width: 360px; justify-self: center; }
+.pg-arch { max-width: 320px; justify-self: center; width: 100%; }
+.pg-head { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: end; justify-content: space-between; margin-bottom: var(--space-7); }
+.pg-head__copy { display: grid; gap: var(--space-1); }
+.pg-grid3 { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.pg-fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.pg-seasons { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.pg-seasons figcaption { align-items: center; }
+.pg-foot { background: var(--surface-2); padding-block: var(--space-7); border-top: 1px solid var(--line); }
+.pg-foot__row { display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-7); justify-content: space-between; align-items: start; }
+.pg-foot__links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
+.pg-empty { padding: var(--space-6); border: 1px dashed var(--line-strong); border-radius: var(--radius-lg); color: var(--ink-muted); }
+
+/* Destination detail */
+.pg-detail { display: grid; gap: var(--space-6); align-items: start; }
+.pg-detail__copy { display: grid; gap: var(--space-4); justify-items: start; }
+.pg-detail__chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.pg-back { display: inline-flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-5); }
+.pg-back .et-i { transform: scaleX(-1); }
+
+@media (min-width: 900px) {
+  .pg-sec { padding-block: var(--space-9); }
+  .pg-hero { padding-block: var(--space-9) var(--space-8); }
+  .pg-hero__grid { grid-template-columns: 1.2fr 1fr; gap: var(--space-8); }
+  .pg-detail { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+  .et-container, .et-band__inner { padding-inline: var(--space-7); }
+}

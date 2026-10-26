@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Euro Travel
 
-## Getting Started
+Slow journeys through Europe, in every season. Next.js (App Router) and Supabase, deployed on Vercel. Styled with the Euro Travel design system.
 
-First, run the development server:
+## Run it locally
+
+1. Create a Supabase project. In the SQL editor, run `supabase/migrations/0001_destinations.sql`, then `supabase/seed.sql`.
+2. Copy `.env.example` to `.env.local` and fill in the project URL and anon key (Project settings > API).
+3. Install and start:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What is here
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/` shows a hero for the current season, a season switcher over destination cards, regional bands and a gallery.
+- `/destinations/[slug]` shows one destination.
+- Destinations live in the `destinations` table. Only rows with `status = 'approved'` are public (row level security).
+- Photographs are hotlinked from Unsplash and credited on every image.
 
-## Learn More
+## Design system
 
-To learn more about Next.js, take a look at the following resources:
+`src/styles/tokens.css` and `src/styles/bundle.css` come from the Euro Travel design system. `src/styles/site.css` holds the page-level layout. Fonts are Cormorant Garamond and Commissioner through `next/font`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Notes for development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project uses Next.js 16 with Cache Components enabled (`next.config.ts`). Data reads sit in `use cache` functions (`src/lib/destinations.ts`), and Next's bundled docs are in `node_modules/next/dist/docs/`.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+After changing destination rows in Supabase, cached pages refresh within an hour. The `destinations` cache tag is there for on-demand revalidation once an admin screen exists.
