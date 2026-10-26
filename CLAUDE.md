@@ -54,4 +54,8 @@ This is Next.js 16 with React 19 and **Cache Components enabled** (`cacheCompone
 ## Planned integrations (constraints to respect)
 
 - The onvaou routing API (https://onvaou.app/developers/routing-api.html) requires an `x-api-key` header, and its docs say to call it from a server only. Proxy it through a route handler or server component and show its attribution string. The free tier is non-commercial.
-- Signed-in features will need a cookie-based Supabase client from `@supabase/ssr` (already installed). Keep it separate from the cookie-free public client, and read cookies outside `"use cache"` scopes.
+- Signed-in features use the cookie-based client in `src/lib/supabase/server.ts` (`@supabase/ssr`). Keep it separate from the cookie-free public client, and read cookies outside `"use cache"` scopes.
+
+## Auth
+
+Email and password through Supabase Auth. `src/proxy.ts` refreshes the session on each request (and sends signed-in users away from `/login` and `/signup`). `src/app/auth/actions.ts` holds the `signUp`, `logIn` and `logOut` server actions, used by `AuthForm` on `/login` and `/signup`. `src/app/auth/confirm/route.ts` finishes the email confirmation link. `getCurrentUser()` in `src/lib/auth.ts` verifies the JWT with `getClaims()`; it reads cookies, so call it only behind `<Suspense>` (the nav's `AccountLinks` does). In Supabase, add `<site url>/auth/confirm` to Auth > URL configuration > Redirect URLs, for localhost and for the Vercel domain.

@@ -22,6 +22,13 @@
 .et-card .et-i { pointer-events: none; }
 .pg-empty { padding: var(--space-6); border: 1px dashed var(--line-strong); border-radius: var(--radius-lg); color: var(--ink-muted); }
 
+/* Sign up and log in */
+.pg-auth { max-width: 460px; }
+.pg-auth__form { gap: var(--space-5); }
+.pg-auth__notice { grid-template-columns: 1fr; }
+.pg-auth__notice > p, .pg-auth__notice > div { margin: 0; }
+.pg-nav-user { font: 400 15px/20px var(--et-body); color: var(--ink-muted); overflow-wrap: anywhere; }
+
 /* Destination detail */
 .pg-detail { display: grid; gap: var(--space-6); align-items: start; }
 .pg-detail__copy { display: grid; gap: var(--space-4); justify-items: start; }
