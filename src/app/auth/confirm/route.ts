@@ -13,6 +13,12 @@ export async function GET(request: NextRequest) {
   const tokenHash = searchParams.get("token_hash");
   const type = searchParams.get("type") as EmailOtpType | null;
 
+  // Google sends `error` (for example `access_denied`) when the user cancels on
+  // its consent screen, with no `code` to exchange.
+  if (!code && !tokenHash && searchParams.get("error")) {
+    return NextResponse.redirect(new URL("/login?error=oauth", origin));
+  }
+
   const supabase = await createClient();
 
   if (code) {
