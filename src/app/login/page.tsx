@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AuthForm } from "@/components/AuthForm";
+import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = { title: "Log in" };
 
@@ -8,14 +9,14 @@ export default function LoginPage({ searchParams }: PageProps<"/login">) {
   return (
     <section className="pg-sec">
       <div className="et-container">
-        <div className="et-stack pg-auth">
+        <Reveal className="et-stack pg-auth">
           <p className="et-eyebrow">Welcome back</p>
           <h1 className="et-display-lg">Log in to Euro Travel</h1>
           <Suspense fallback={null}>
             <ConfirmError searchParams={searchParams} />
           </Suspense>
           <AuthForm mode="login" />
-        </div>
+        </Reveal>
       </div>
     </section>
   );

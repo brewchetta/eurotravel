@@ -1,9 +1,10 @@
 import { UNSPLASH_URL } from "@/lib/unsplash";
+import { Reveal } from "./Reveal";
 
 export function Footer() {
   return (
     <footer className="pg-foot">
-      <div className="et-container">
+      <Reveal className="et-container">
         <div className="pg-foot__row">
           <div className="et-stack" style={{ gap: 8, maxWidth: 360 }}>
             <span className="et-wordmark">Euro Travel</span>
@@ -14,7 +15,7 @@ export function Footer() {
           © 2026 Euro Travel · Photographs from <a href={UNSPLASH_URL}>Unsplash</a>, credited on
           each image.
         </p>
-      </div>
+      </Reveal>
     </footer>
   );
 }

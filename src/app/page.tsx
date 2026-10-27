@@ -1,5 +1,6 @@
 import { DestinationBrowser } from "@/components/DestinationBrowser";
 import { Gallery } from "@/components/Gallery";
+import { HeroMotion } from "@/components/HeroMotion";
 import { Photo, photoFlag } from "@/components/Photo";
 import { RegionBand } from "@/components/RegionBand";
 import { SEASON_COPY } from "@/lib/content";
@@ -52,7 +53,7 @@ export default async function Home() {
     <>
       <section className="pg-hero" data-region={hero.region} aria-labelledby="hero-h">
         <div className="et-container">
-          <div className="pg-hero__grid">
+          <HeroMotion className="pg-hero__grid">
             <div className="pg-hero__copy">
               <p className="et-eyebrow">
                 {SEASON_NAMES[season]} · {seasonRange(season)}
@@ -70,7 +71,7 @@ export default async function Home() {
             >
               <span className="et-photo__flag">{photoFlag(hero)}</span>
             </Photo>
-          </div>
+          </HeroMotion>
         </div>
       </section>
 

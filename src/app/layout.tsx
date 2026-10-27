@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Commissioner, Cormorant_Garamond } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navigation, SeasonRibbon } from "@/components/Navigation";
+import { SiteMotion } from "@/components/SiteMotion";
 import { getCurrentSeason } from "@/lib/current-season";
 import "./globals.css";
 
@@ -39,6 +40,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <SeasonRibbon />
         <main id="main">{children}</main>
         <Footer />
+        <SiteMotion />
       </body>
     </html>
   );

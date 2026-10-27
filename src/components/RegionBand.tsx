@@ -2,6 +2,7 @@ import Link from "next/link";
 import { REGION_COPY, REGION_NAMES, REGION_PLACES } from "@/lib/content";
 import type { Destination, Region } from "@/types/destination";
 import { Photo, photoFlag } from "./Photo";
+import { Reveal } from "./Reveal";
 
 interface RegionBandProps {
   region: Region;
@@ -15,7 +16,12 @@ export function RegionBand({ region, destination: d, flip }: RegionBandProps) {
   const id = `band-${region}`;
   return (
     <section className="et-band" data-region={region} aria-labelledby={id}>
-      <div className={`et-band__inner${flip ? " et-band__inner--flip" : ""}`}>
+      <Reveal
+        className={`et-band__inner${flip ? " et-band__inner--flip" : ""}`}
+        variant="sides"
+        flip={flip}
+        parallax
+      >
         <div className="et-band__copy">
           <p className="et-eyebrow">
             {REGION_NAMES[region]} · {REGION_PLACES[region]}
@@ -40,7 +46,7 @@ export function RegionBand({ region, destination: d, flip }: RegionBandProps) {
         >
           <span className="et-photo__flag">{photoFlag(d)}</span>
         </Photo>
-      </div>
+      </Reveal>
     </section>
   );
 }
