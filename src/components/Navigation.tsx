@@ -16,6 +16,7 @@ export function Navigation() {
         <Link href="/#destinations">Destinations</Link>
         <Link href="/#regions">Regions</Link>
         <Link href="/#gallery">Gallery</Link>
+        <Link href="/submit">Recommend a place</Link>
       </nav>
       <div className="et-nav__tools">
         {/* Reads the session cookie, so it streams in behind the static shell. */}
@@ -45,6 +46,11 @@ async function AccountLinks() {
 
   return (
     <>
+      {user.role === "admin" && (
+        <Link className="et-btn et-btn--quiet pg-nolink" href="/admin/submissions">
+          Review
+        </Link>
+      )}
       <span className="pg-nav-user">{user.email}</span>
       <form action={logOut}>
         <button className="et-btn et-btn--secondary" type="submit">
