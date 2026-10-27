@@ -27,6 +27,9 @@
 .pg-auth__form { gap: var(--space-5); }
 .pg-auth__notice { grid-template-columns: 1fr; }
 .pg-auth__notice > p, .pg-auth__notice > div { margin: 0; }
+.pg-auth__divider { display: flex; align-items: center; gap: var(--space-4); margin: 0; color: var(--ink-muted); }
+.pg-auth__divider::before, .pg-auth__divider::after { content: ""; flex: 1; border-top: 1px solid var(--line-strong); }
+.pg-auth__google { display: flex; width: 100%; gap: var(--space-3); }
 .pg-nav-user { font: 400 15px/20px var(--et-body); color: var(--ink-muted); overflow-wrap: anywhere; }
 
 /* Recommendations and review */

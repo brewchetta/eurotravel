@@ -95,6 +95,21 @@ export async function logIn(_prev: AuthState, formData: FormData): Promise<AuthS
   redirect("/");
 }
 
+/**
+ * Starts Google sign-in. Supabase runs the OAuth exchange and sends the user
+ * back to `/auth/confirm` with a `code`, which that route turns into a session.
+ */
+export async function signInWithGoogle() {
+  const supabase = await createClient();
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo: `${await getOrigin()}/auth/confirm` },
+  });
+
+  if (error || !data.url) redirect("/login?error=oauth");
+  redirect(data.url);
+}
+
 export async function logOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
