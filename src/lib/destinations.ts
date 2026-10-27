@@ -2,7 +2,7 @@ import { cacheLife, cacheTag } from "next/cache";
 import { createPublicClient } from "@/lib/supabase/public";
 import type { Destination, DestinationRow } from "@/types/destination";
 
-function toDestination(row: DestinationRow): Destination {
+export function toDestination(row: DestinationRow): Destination {
   return {
     id: row.id,
     slug: row.slug,
